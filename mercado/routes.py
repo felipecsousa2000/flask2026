@@ -6,8 +6,12 @@ from mercado import db
 from flask_login import login_user, logout_user, login_required
 import stripe
 import os
+from dotenv import load_dotenv
 
+# Carrega as variáveis do .env
+load_dotenv()
 
+# Usa a variável de ambiente
 stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
 
 @app.route('/')
