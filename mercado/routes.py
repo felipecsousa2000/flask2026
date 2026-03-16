@@ -10,6 +10,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Só carrega .env se estiver local, Render já define variáveis
+if os.environ.get("FLASK_ENV") == "development":
+    load_dotenv()
+
 stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
 
 @app.route('/')
@@ -73,7 +77,7 @@ def comprar(item_id):
                 'product_data': {
                     'name': item.nome,
                 },
-                'unit_amount': item.preco * 100,  
+                'unit_amount': int(item.preco * 100), 
             },
             'quantity': 1,
         }],
