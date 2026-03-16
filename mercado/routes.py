@@ -8,10 +8,8 @@ import stripe
 import os
 from dotenv import load_dotenv
 
-# Carrega as variáveis do .env
 load_dotenv()
 
-# Usa a variável de ambiente
 stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
 
 @app.route('/')
